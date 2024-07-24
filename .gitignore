@@ -1,0 +1,10 @@
+.env
+node_modules
+Canvasify
+binary.go
+read.go
+request.bin
+app
+proto/canvas.proto
+*.js
+*.ts
