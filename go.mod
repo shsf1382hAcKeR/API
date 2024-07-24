@@ -4,7 +4,6 @@ go 1.22.3
 
 require (
 	github.com/go-chi/chi/v5 v5.1.0
-	github.com/joho/godotenv v1.5.1
 	github.com/rs/zerolog v1.33.0
 	google.golang.org/protobuf v1.34.2
 )
@@ -14,4 +13,7 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 )
 
-require golang.org/x/sys v0.22.0 // indirect
+require (
+	github.com/joho/godotenv v1.5.1
+	golang.org/x/sys v0.22.0 // indirect
+)
