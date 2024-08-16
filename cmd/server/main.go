@@ -7,7 +7,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 	"github.com/shsf1382hAcKeR/Canvasify/internal/handlers"
 	"github.com/shsf1382hAcKeR/Canvasify/internal/logging"
 )
@@ -17,11 +17,13 @@ func main() {
 	port := flag.String("port", "8080", "Port to run the server on")
 	flag.Parse()
 
+	
+
 	// Load the .env file
-	err := godotenv.Load()
-	if err != nil {
-		logging.Logger.Fatal().Err(err).Msg("Error loading .env file")
-	}
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	logging.Logger.Fatal().Err(err).Msg("Error loading .env file")
+	// }
 
 	// Set up zerolog
 	logging.SetupLogger()
@@ -39,7 +41,7 @@ func main() {
 	// Start the server
 	url := fmt.Sprintf("http://localhost:%s", *port)
 	logging.Logger.Info().Msgf("💻 Server is live at %s", logging.ColoredURL(url))
-	err = http.ListenAndServe(":"+*port, r)
+	err := http.ListenAndServe(":"+*port, r)
 	if err != nil {
 		logging.Logger.Fatal().Err(err).Msg("Error starting server")
 	}

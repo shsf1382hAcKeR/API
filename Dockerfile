@@ -1,25 +1,26 @@
-FROM golang:latest as build
+# Use the official Golang image as the base image
+FROM golang:latest
 
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the Go module files
-COPY go.mod .
-COPY go.sum .
+# Copy the go.mod and go.sum files first
+COPY go.mod go.sum ./
 
-# Download the Go module dependencies
+# Download Go modules
 RUN go mod download
 
+# Copy the local code to the container
 COPY . .
 
-RUN go build -o /canvasify ./cmd/server
+# Copy the .env file to the container
+# COPY .env .env
 
-FROM alpine:latest as run
+# Build the Go application
+RUN go build -o Canvasify ./cmd/server/main.go
 
-# Copy the application executable from the build image
-COPY --from=build /canvasify /canvasify
-
-WORKDIR /app
-
+# Expose port 8080 to the outside world
 EXPOSE 8080
 
-CMD ["/canvasify"]
+# Command to run the executable
+CMD ["./Canvasify", "--port", "8080"]
