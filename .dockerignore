@@ -1,5 +1,10 @@
-.env
+# Exclude git directory
+.git
+
+# Exclude executable binary
 Canvasify*
+
+# Exclude local development files
 binary.go
 read.go
 request.bin
