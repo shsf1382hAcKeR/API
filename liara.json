@@ -1,9 +1,0 @@
-{
-  "platform": "docker",
-  "app": "canvasify",
-  "port": 8080,
-  "build": {
-    "location": "germany"
-  },
-  "account": "personal"
-}
