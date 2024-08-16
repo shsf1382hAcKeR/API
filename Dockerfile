@@ -14,7 +14,7 @@ RUN go mod download
 COPY . .
 
 # Copy the .env file to the container
-COPY .env .env
+# COPY .env .env
 
 # Build the Go application
 RUN go build -o Canvasify ./cmd/server/main.go
