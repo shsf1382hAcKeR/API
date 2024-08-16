@@ -1,0 +1,41 @@
+// protolint:disable MAX_LINE_LENGTH
+
+// Run the following command to compile the Protocol Buffers schema:
+// protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative proto/canvas.proto
+
+syntax = "proto3";
+
+package proto;
+
+// Specify the Go package for the generated code
+option go_package = "github.com/shsf1382hAcKeR/Canvasify/proto";
+
+// CanvasRequest is used to request canvas data for a list of tracks.
+message CanvasRequest {
+  // Track represents a track URI for which canvas data is requested.
+  message Track {
+    string track_uri = 1;  // Track URI, e.g., spotify:track:5osCClSjGplWagDsJmyivf
+  }
+  repeated Track tracks = 1;  // List of tracks for which canvas data is requested.
+}
+
+// CanvasResponse is the response message containing canvas data.
+message CanvasResponse {
+  // Canvas represents the canvas data for a track.
+  message Canvas {
+    string id = 1;                // Unique ID for the canvas.
+    string canvas_url = 2;        // URL of the canvas video.
+    string track_uri = 5;         // Track URI, e.g., spotify:track:5osCClSjGplWagDsJmyivf
+
+    // Artist represents the artist data related to the canvas.
+    message Artist {
+      string artist_uri = 1;      // Artist URI, e.g., spotify:artist:3E61SnNA9oqKP7hI0K3vZv
+      string artist_name = 2;     // Name of the artist.
+      string artist_img_url = 3;  // URL of the artist's image.
+    }
+    Artist artist = 6;  // Artist data associated with the canvas.
+    string other_id = 9;          // Additional identifier.
+    string canvas_uri = 11;       // Canvas URI, e.g., spotify:canvas:1OuybAWK7XOQMG725ZtFwG
+  }
+  repeated Canvas canvases = 1;  // List of canvases returned in the response.
+}
